@@ -221,7 +221,7 @@ $MainCode = {
                 }
 
                 Export-PasswordConfiguration @PasswordParameters
-                [System.Windows.Forms.MessageBox]::Show("Param�tres sauvegard�s", "Message", "OK", "Information")
+                [System.Windows.Forms.MessageBox]::Show("Settings Saved", "Message", "OK", "Information")
             })
 
             $syncHash.Window.FindName("B_GenerateMultiPassword").Add_Click({
