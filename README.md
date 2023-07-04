@@ -27,7 +27,7 @@ The NoRepeat option is used to generate a password with no duplicate characters.
 _Example :_
 ```
 $PasswordParameters = @{
-        MinimumLength = $true
+        MinimumLength = 12
         IncludeUppercase = $true
         IncludeLowercase = $true
         IncludeNumbers =  $true
