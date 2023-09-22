@@ -47,6 +47,11 @@ $PasswordParameters = @{
 
 If you want to get a password generator interface in powershell you can get the whole project. Then just run PWDGEN.Program.ps1.
 
+You can create a manual desktop shortcut using this example :
+`
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -windowstyle hidden -File "C:\User\letalys\Powershell-PasswordGenerator\Program\PWDGEN.Program.ps1"
+`
+
 The interface manages the different parameters available for the password generation function.
 
 A feature also makes it possible to generate a file containing a number of passwords chosen by the user.
