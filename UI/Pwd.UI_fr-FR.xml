@@ -1,0 +1,320 @@
+<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+        Title="Password Generator" Height="700" Width="400" SizeToContent="Height" ResizeMode="NoResize" Name="Form">
+    <StackPanel Name="Main" Background="White" >
+        <Border  Background="#FF1233D7">
+            <Label Content="Password Generator" Background="#FF0E6173" Foreground="White"/>
+        </Border>
+        <Border Background="#FFC5DADE">
+            <StackPanel Margin="10,0,10,20">
+                <Border Margin="3,10,3,0">
+                    <TextBox  Name="TBX_GeneratedPassword" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" FontSize="25" TextAlignment="Center" AutoWordSelection="True" VerticalContentAlignment="Center" VerticalAlignment="Center" BorderBrush="{x:Null}" SelectionBrush="#FF0E6173" TextWrapping="Wrap" IsReadOnly="True">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5"/>
+                                <Setter Property="MinHeight" Value="40"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </Border>
+                <Border Margin="3,3,3,0">
+                    <StackPanel>
+                        <ProgressBar Name="PB_Strength" Height="9"  Foreground="#FF040000"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,5">
+                            <Label Content="Force : " FontSize="10" Margin="-5,-5,0,0" Foreground="#FF6A796D"/>
+                            <Label Name="LBL_Strength" Content="Pas mal !" FontSize="10" Margin="-5,-5,0,0" Foreground="#FF6A796D"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Name="B_GenerateNewPassword" Width="100" Height="30" Background="#FFAACDD6" Foreground="#FF0E6173" BorderThickness="0" Content="Générer" Margin="0,0,5,0" FontWeight="Bold">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Border x:Name="ButtonBackground" Background="{TemplateBinding Background}" CornerRadius="5" />
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonBackground" Property="Background" Value="#FFA3C2CA" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="ButtonBackground" Property="Background" Value="Orange" />
+                                                <Setter Property="Foreground" Value="Blue" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Button Name="B_CopyToClipboard" Width="100" Height="30" Background="#FF0E6173" Foreground="White" BorderThickness="0" Content="Copier">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Border x:Name="ButtonBackground" Background="{TemplateBinding Background}" CornerRadius="5" />
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonBackground" Property="Background" Value="#FF0C4552" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="ButtonBackground" Property="Background" Value="Orange" />
+                                                <Setter Property="Foreground" Value="Blue" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </Border>
+       
+        <Border Margin="10,3,8,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <Label Content="Longueur du mot de passe : "/>
+                    <Label Content="{Binding ElementName=Slider_PwdLength, Path=Value}"/>
+                </StackPanel>
+                <Slider Name="Slider_PwdLength" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Minimum="4" Maximum="40" Value="12"  TickFrequency="1" IsSnapToTickEnabled="True"  BorderBrush="{x:Null}" Foreground="{x:Null}" Background="{x:Null}" />
+                <Label Grid.Row="2" Grid.Column="0" Content="{Binding ElementName=Slider_PwdLength, Path=Minimum}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="10" Margin="0,-7,0,0" />
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding ElementName=Slider_PwdLength, Path=Maximum}" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10" Margin="0,-7,0,0" />
+            </Grid>
+        </Border>
+        <Border Margin="10,5,10,10" BorderBrush="#FF0E6173" BorderThickness="0.5" />
+        <Border  Margin="10,5,10,5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Label Content="Majuscules" Grid.Row="0" Grid.Column="1"/>
+                <Label Content="(ex. AZERTY)" Grid.Row="0" Grid.Column="2" Foreground="#FF6B6A6A"/>
+                <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="True" Name="CHK_PwdOption_uppercase">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid>
+                                <Border x:Name="CheckboxBackground" Background="White" BorderThickness="0.5" BorderBrush="#FF0E6173" CornerRadius="5" Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <Path x:Name="CheckMark" Stroke="White" StrokeThickness="2" Data="M5,10 L10,15 L15,5"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="#FF0E6173"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
+                <Label Content="Minuscules" Grid.Row="1" Grid.Column="1"/>
+                <Label Content="(ex. azerty)" Grid.Row="1" Grid.Column="2" Foreground="#FF6B6A6A"/>
+                <CheckBox Grid.Row="1" Grid.Column="0"  IsChecked="True" Name="CHK_PwdOption_lowercase">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox" >
+                            <Grid>
+                                <Border x:Name="CheckboxBackground" Background="White" BorderThickness="0.5" BorderBrush="#FF0E6173" CornerRadius="5" Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <Path x:Name="CheckMark" Stroke="White" StrokeThickness="2" Data="M5,10 L10,15 L15,5"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="#FF0E6173"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
+                <Label Content="Chiffres" Grid.Row="2" Grid.Column="1"/>
+                <Label Content="(p. ex. 345)" Grid.Row="2" Grid.Column="2" Foreground="#FF6B6A6A" />
+                <CheckBox Grid.Row="2" Grid.Column="0"  IsChecked="True" Name="CHK_PwdOption_number">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid>
+                                <Border x:Name="CheckboxBackground" Background="White" BorderThickness="0.5" BorderBrush="#FF0E6173" CornerRadius="5" Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <Path x:Name="CheckMark" Stroke="White" StrokeThickness="2" Data="M5,10 L10,15 L15,5"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="#FF0E6173"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
+                <Label Content="Symbôles" Grid.Row="3" Grid.Column="1"/>
+                <Label Content="(&amp;@$!#?)" Grid.Row="3" Grid.Column="2" Foreground="#FF6B6A6A"/>
+                <CheckBox Grid.Row="3" Grid.Column="0"  IsChecked="True"  Name="CHK_PwdOption_symbol">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid>
+                                <Border x:Name="CheckboxBackground" Background="White" BorderThickness="0.5" BorderBrush="#FF0E6173" CornerRadius="5" Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <Path x:Name="CheckMark" Stroke="White" StrokeThickness="2" Data="M5,10 L10,15 L15,5"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="#FF0E6173"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
+                <Label Content="Autres Symbôles" Grid.Row="4" Grid.Column="1"/>
+                <Label Content="(()[.]*-,)" Grid.Row="4" Grid.Column="2" Foreground="#FF6B6A6A"/>
+                <CheckBox Grid.Row="4" Grid.Column="0"  IsChecked="True"  Name="CHK_PwdOption_othersymbol">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid>
+                                <Border x:Name="CheckboxBackground" Background="White" BorderThickness="0.5" BorderBrush="#FF0E6173" CornerRadius="5" Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <Path x:Name="CheckMark" Stroke="White" StrokeThickness="2" Data="M5,10 L10,15 L15,5"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="#FF0E6173"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
+            </Grid>
+        </Border>
+        <Border Margin="10,5,10,10" BorderBrush="#FF0E6173" BorderThickness="0.5" />
+        <Border  Margin="10,5,10,5" HorizontalAlignment="Right">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Label Content="Pas de répétition de caractères" Grid.Row="4" Grid.Column="1"/>
+                <CheckBox Grid.Row="3" Grid.Column="0"  IsChecked="True"  Name="CHK_PwdOption_unique">
+                    <CheckBox.Template>
+                        <ControlTemplate TargetType="CheckBox">
+                            <Grid>
+                                <Border x:Name="CheckboxBackground" Background="White" BorderThickness="0.5" BorderBrush="#FF0E6173" CornerRadius="5" Height="20" Width="20" HorizontalAlignment="Left"/>
+                                <Path x:Name="CheckMark" Stroke="White" StrokeThickness="2" Data="M5,10 L10,15 L15,5"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="#FF0E6173"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="CheckboxBackground" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </CheckBox.Template>
+                </CheckBox>
+            </Grid>
+        </Border>
+        <Border Margin="10,5,10,10" BorderBrush="#FF0E6173" BorderThickness="0.5" />
+        <Border Margin="10,5,10,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="B_RegisterOptions" Width="Auto" Height="25" Background="#FFEFEFEF" Foreground="#FF404040" BorderThickness="0" Content="Sauvegarder en tant que paramètres par défaut">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button"  >
+                            <Grid>
+                                <Border x:Name="ButtonBackground" Background="{TemplateBinding Background}" CornerRadius="5" />
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3,3,3,3" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ButtonBackground" Property="Background" Value="#FFBDBABA" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonBackground" Property="Background" Value="Orange" />
+                                    <Setter Property="Foreground" Value="Blue" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Border>
+        <Border Background="#FFC5DADE" >
+            <Expander Header="Autre Action" IsExpanded="False" Foreground="#FF0E6173" FontWeight="Bold" Margin="10,0,10,0">
+                <StackPanel Margin="0,5,0,0">
+                    <StackPanel  Orientation="Horizontal">
+                        <Label Content="Générer un fichier CSV contenant" FontWeight="Normal"/>
+                        <TextBox Name="TBX_NumberOfPwdToGenerate" Width="50" Text="10" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" MaxLength="5"/>
+                        <Label Content="mot de passe." FontWeight="Normal"/>
+                    </StackPanel>
+                    <TextBlock Text="Les mots de passe seront générés avec les paramètres actuellement définis. La génération du mot de passe peut prendre plusieurs minutes selon le nombre demandé. L'interface utilisateur peut se bloquer pendant la génération." FontWeight="Normal" TextWrapping="Wrap" FontStyle="Italic" FontSize="10" Margin="5,0,0,0"/>
+                    <Button Name="B_GenerateMultiPassword" Width="150" Height="30" Background="#FFAACDD6" Foreground="#FF0E6173" BorderThickness="0" Content="Générer le fichier CSV" Margin="0,10,5,10" FontWeight="Bold" HorizontalAlignment="Right">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border x:Name="ButtonBackground" Background="{TemplateBinding Background}" CornerRadius="5" />
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonBackground" Property="Background" Value="#FFA3C2CA" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="ButtonBackground" Property="Background" Value="Orange" />
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <ProgressBar Name="PB_GenerateMultiPassword" Height="7" Margin="0,0,0,10" Visibility="Collapsed" IsIndeterminate="True"/>
+                </StackPanel>
+            </Expander>
+        </Border>
+        <Border Background="#FF0E6173">
+            <StackPanel>
+                <Label Content="Created by Letalys" FontSize="9" HorizontalAlignment="Right" FontFamily="Bahnschrift" Foreground="White" FontStyle="Italic" FontWeight="Bold"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>
