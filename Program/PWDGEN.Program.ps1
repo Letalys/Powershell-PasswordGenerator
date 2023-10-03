@@ -183,10 +183,9 @@ $MainCode = {
             $syncHash.Window.FindName("B_GenerateNewPassword").Add_Click({
                 Set-PasswordFromUI
             })
-            $syncHash.Window.FindName("B_GenerateNewPassword").Add_Click({
+            $syncHash.Window.FindName("B_CopyToClipboard").Add_Click({
                 Set-Clipboard -Value $syncHash.Window.FindName("TBX_GeneratedPassword").Text
             })
-
             $syncHash.Window.FindName("Slider_PwdLength").Add_ValueChanged({
                 Set-PasswordFromUI
             })
